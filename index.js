@@ -33,7 +33,7 @@ app.post('/', bp, (req, res) => {
           if(err) {
             return console.error('error running query', err);
           }
-          console.log("id:", result.rows[0]);
+          console.log("saved>", result.rows[0]);
           done()
         });
       })
@@ -41,6 +41,26 @@ app.post('/', bp, (req, res) => {
   })
 
   res.send('cool')
+})
+
+app.get('/data', (res, req, next) => {
+
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+
+    if(err) return next(err)
+
+    client.query(`
+      SELECT * FROM "public"."emoji"
+      order by time desc
+      limit 100
+      `,
+      function(err, result) {
+        if(err) return next(err)
+        res.json(result)
+        done()
+      });
+  })
+
 })
 
 app.get('*', (req, res) => {
