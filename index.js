@@ -64,7 +64,9 @@ app.get('/data', (req, res, next) => {
       `,
       function(err, result) {
         if(err) return next(err)
-        res.json(result)
+        res.json(result.rows.map((r) => (
+          [r.id, r.emoji, + new Date(r.time)]
+        )))
         done()
       });
   })
