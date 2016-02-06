@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/benfoxall/emoji-poll/issues"
   },
-  "homepage": "https://github.com/benfoxall/emoji-poll#readme"
+  "homepage": "https://github.com/benfoxall/emoji-poll#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
