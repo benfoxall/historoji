@@ -34,12 +34,15 @@ app.post('/', bp, (req, res) => {
         if(err) {
           return console.error('error fetching client from pool', err);
         }
-        client.query(`
-          INSERT INTO "public"."emoji"("emoji", "team", "channel", "user")
-          VALUES('{$1}', '{$2}', '{$3}', '{$4}')
-          RETURNING "id", "emoji", "team", "channel", "user", "time"
-          `, [e, req.body.team_domain,
-              req.body.channel_name, req.body.user_name], function(err, result) {
+        client.query({
+          text: 'INSERT INTO "public"."emoji"("emoji", "team", "channel", "user") VALUES($1, $2, $3, $4) RETURNING "id", "emoji", "team", "channel", "user", "time"',
+          values: [
+            e,
+            req.body.team_domain,
+            req.body.channel_name,
+            req.body.user_name
+          ]
+        }, function(err, result) {
           done();
           if(err) {
             return console.error('error running query', err);
