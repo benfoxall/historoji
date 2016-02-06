@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/benfoxall/emoji-poll#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "body-parser": "^1.14.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "pg": "^4.4.4"
   }
 }
