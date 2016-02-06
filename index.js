@@ -44,7 +44,7 @@ app.post('/', bp, (req, res) => {
           if(err) {
             return console.error('error running query', err);
           }
-          console.log(result.rows[0].number);
+          console.log("id:", result.rows[0]);
         });
       });
     }
