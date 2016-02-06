@@ -1,0 +1,19 @@
+{
+  "name": "emoji-poll",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benfoxall/emoji-poll.git"
+  },
+  "author": "Ben Foxall (@benjaminbenben)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benfoxall/emoji-poll/issues"
+  },
+  "homepage": "https://github.com/benfoxall/emoji-poll#readme"
+}
