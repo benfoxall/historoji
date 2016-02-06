@@ -18,7 +18,7 @@ app.post('/', bp, (req, res, next) => {
   const domain  = req.body.team_domain
   const channel = req.body.channel_name
   const user    = req.body.user_name
-  const emoji   = emojis(req.body.string)
+  const emoji   = emojis(req.body.text)
 
   if(!(domain || channel || user))
     return res.sendStatus(400)
