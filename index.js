@@ -43,7 +43,7 @@ app.post('/', bp, (req, res) => {
   res.send('cool')
 })
 
-app.get('/data', (res, req, next) => {
+app.get('/data', (req, res, next) => {
 
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 
