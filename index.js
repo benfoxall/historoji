@@ -19,10 +19,7 @@ app.post('/', bp, (req, res) => {
     if(process.env.DATABASE_URL) {
       pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 
-        if(err) {
-          return console.error('error fetching client from pool', err);
-        }
-        client.on('drain', client.end.bind(client))
+        if(err) return console.error('error fetching client from pool', err);
 
         client.query({
           text: 'INSERT INTO "public"."emoji"("emoji", "team", "channel", "user") VALUES($1, $2, $3, $4) RETURNING "id", "emoji", "team", "channel", "user", "time"',
@@ -37,6 +34,7 @@ app.post('/', bp, (req, res) => {
             return console.error('error running query', err);
           }
           console.log("id:", result.rows[0]);
+          done()
         });
       })
     }
