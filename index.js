@@ -36,7 +36,7 @@ app.post('/', bp, (req, res, next) => {
       client.query({
         text: 'INSERT INTO "public"."emoji"("emoji", "team", "channel", "user") VALUES($1, $2, $3, $4) RETURNING "id", "emoji", "team", "channel", "user", "time"',
         values: [
-          e,
+          em,
           req.body.team_domain,
           req.body.channel_name,
           req.body.user_name
