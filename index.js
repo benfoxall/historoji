@@ -60,12 +60,12 @@ app.get('/data', (req, res, next) => {
     client.query(`
       SELECT * FROM "public"."emoji"
       order by time desc
-      limit 100
+      limit 2000
       `,
       function(err, result) {
         if(err) return next(err)
         res.json(result.rows.map((r) => (
-          [r.id, r.emoji, + new Date(r.time)]
+          [r.id, + new Date(r.time), r.emoji, r.team, r.channel, r.user]
         )))
         done()
       });
