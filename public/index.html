@@ -4,14 +4,57 @@
     <meta charset="utf-8">
     <title>Emoji Poll</title>
     <style media="screen">
+
       img {
-        width: 1em;
-        height: 1em;
-        transition: transform .5s
+        width: 10px;
+        height: 10px;
+        transition: transform .5s;
+      }
+
+      body {
+        font-family: sans-serif;
+        margin:0;
+        margin-bottom: 100px
+      }
+      h2 {
+        font-weight: 100;
+        color:#777;
+        -webkit-font-smoothing: antialiased;
+        display:block;
+        margin:0;
+        height:200px;
+        transition: transform 1s;
+        padding: 1em;
+      }
+
+      nav {
+        position:fixed;
+        right:1em;
+        top:1em;
+        margin:.2em;
+        z-index: 1;
+      }
+      a {
+        font-size:1.5em;
+        padding:.2em;
+        text-decoration: none;
+        -webkit-filter: grayscale(100%);
+        transition: .1s;
+      }
+      a:hover,a:focus {
+        -webkit-filter: none;
       }
     </style>
   </head>
   <body>
+
+    <nav>
+      <a data-replace-state="all" href="/">👍</a>
+      <a data-replace-state="channel" href="/?by=channel">💬</a>
+      <a data-replace-state="person" href="/?by=person">🙋</a>
+      <!-- <a data-replace-state="stretch" href="#stretch">↔️</a> -->
+    </nav>
+
     <script src="bower_components/es6-promise/es6-promise.min.js"></script>
     <script src="bower_components/fetch/fetch.js"></script>
     <script src="circlepack.js"></script>
