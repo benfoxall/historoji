@@ -81,7 +81,7 @@ app.get('*', (req, res) => {
 app.listen(process.env.PORT || 3000)
 
 function emojis(text) {
-  const RE = /:(\w+):/g
+  const RE = /:([\w-\+]+):/g
   const _s = []
   var m
   while(m = RE.exec(text)) _s.push(m[1])
