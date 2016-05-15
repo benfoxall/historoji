@@ -69,11 +69,12 @@ function fill(arr, v) {
   }
 }
 
-const circlepack = (circles) => {
-  var ys = new Array(circles.length)
-
-  fill(ys, 0)
-
+const circlepack = (circles, ys) => {
+  if(!ys) {
+    ys = new Array(circles.length)
+    fill(ys, 0)
+  }
+  
   var a,b,intersectors
 
   for (var i = 0; i < circles.length; i++) {
