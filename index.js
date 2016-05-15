@@ -23,6 +23,9 @@ app.post('/', bp, (req, res, next) => {
   if(!(domain || channel || user))
     return res.sendStatus(400)
 
+  if(process.env.TOKEN && token != process.env.SLACK_TOKEN)
+    return res.sendStatus(400)
+
   if(!emoji.length)
     return res.sendStatus(202)
 
