@@ -73,10 +73,7 @@ app.get('/data', (req, res, next) => {
 
 })
 
-app.get('*', (req, res) => {
-  console.log(req)
-  res.send('ok')
-})
+app.use(express.static('public'))
 
 app.listen(process.env.PORT || 3000)
 
