@@ -42,8 +42,8 @@ app.post('/', bp, (req, res, next) => {
           req.body.user_name
         ]
       }, function(err, result) {
-        if(!--count) {done(); res.sendStatus(200)}
         if(err) return next(err)
+          if(!--count) {done(); res.sendStatus(200)}
 
         console.log("saved>", result.rows[0]);
       });
