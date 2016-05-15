@@ -27,7 +27,7 @@ function show() {
 
     var src
     if(emojiMap[shortcode]){
-      src = `emoji/${emojiMap[shortcode]}`
+      src = `emoji-slack/${emojiMap[shortcode]}`
     }
     if(emojiMapDo[shortcode]){
       src = `emoji-do/${emojiMapDo[shortcode]}`
@@ -84,11 +84,11 @@ function show() {
 // populate data
 Promise.all([
 
-  fetch('/emojimap.json')
+  fetch('/emoji-slack-map.json')
     .then(r => r.json())
     .then(_ => emojiMap = _),
 
-  fetch('/emojimap-do.json')
+  fetch('/emoji-do-map.json')
     .then(r => r.json())
     .then(_ => emojiMapDo = _),
 
