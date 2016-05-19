@@ -4,11 +4,8 @@
     <meta charset="utf-8">
     <title>Emoji Poll</title>
     <style media="screen">
-
-      img {
-        width: 10px;
-        height: 10px;
-        transition: transform .5s;
+      html {
+        overflow: hidden;
       }
 
       body {
@@ -16,6 +13,19 @@
         margin:0;
         margin-bottom: 100px
       }
+
+      img {
+        width: 10px;
+        height: 10px;
+        transition: transform .5s;
+      }
+
+      img:hover {
+        width: 30px;
+        height: 30px;
+        margin: -10px 0 0 -10px;
+      }
+
       h2 {
         font-weight: 100;
         color:#777;
@@ -25,6 +35,7 @@
         height:200px;
         transition: transform 1s;
         padding: 1em;
+        z-index: -1;
       }
 
       nav {
@@ -34,6 +45,7 @@
         margin:.2em;
         z-index: 1;
       }
+
       a {
         font-size:1.5em;
         padding:.2em;
@@ -41,7 +53,9 @@
         -webkit-filter: grayscale(100%);
         transition: .1s;
       }
-      a:hover,a:focus {
+
+      a:hover,
+      a:focus {
         -webkit-filter: none;
       }
     </style>
