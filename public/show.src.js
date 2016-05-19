@@ -14,23 +14,23 @@ function show() {
   var min = +Infinity,
       max = -Infinity
 
-  data.forEach(function (d) {
+  data.forEach((d) => {
     min = Math.min(min,d[1])
     max = Math.max(max,d[1])
   })
 
   data.reverse()
 
-  data.forEach(function (d) {
+  data.forEach((d) => {
     var shortcode = d[2]
     if(shortcode == 'simple_smile') shortcode = 'smile'
 
     var src
     if(emojiMap[shortcode]){
-      src = "emoji-slack/" + (emojiMap[shortcode])
+      src = `emoji-slack/${emojiMap[shortcode]}`
     }
     if(emojiMapDo[shortcode]){
-      src = "emoji-do/" + (emojiMapDo[shortcode])
+      src = `emoji-do/${emojiMapDo[shortcode]}`
     }
 
     if(src) {
@@ -61,20 +61,20 @@ function show() {
 
 
 
-  var _ys = circles.map( function ( f ) { return h/2; } )
+  var _ys = circles.map( f => h/2 )
 
   circlepack(circles, _ys)
 
 
   // initial positions
-  circles.forEach(function (c,i) {
+  circles.forEach((c,i) => {
     c.element.style.left =
     c.element.style.top = 0
     c.element.style.position = 'absolute'
 
 
     c.element.style.transform =
-      "translate(" + (c.x) + "px, " + ((_ys[i])) + "px) scale(0.08) rotate(" + (~~((Math.random()-.5)*360)) + "deg)"
+      `translate(${c.x}px, ${(_ys[i])}px) scale(0.08) rotate(${~~((Math.random()-.5)*360)}deg)`
 
     c.element.style.transitionDelay = (i/circles.length) * 10 + 's'
   })
@@ -111,9 +111,9 @@ function show() {
 
 
     if(!key) {
-      circles.forEach(function (c,i) {
+      circles.forEach((c,i) => {
         c.element.style.transform =
-          "translate(" + (c.x) + "px, " + ((_ys[i])) + "px) scale(" + (c.r/6) + ")"
+          `translate(${c.x}px, ${(_ys[i])}px) scale(${c.r/6})`
       })
 
       return;
@@ -122,13 +122,14 @@ function show() {
     var items = order(group(key))
 
     // look up for item => start y position
-    var itemsY = items.reduce( function (memo, item, i) {
+    var itemsY = items.reduce( (memo, item, i) => {
       memo[item] = (i * 200) + 100
       return memo
     }, {})
 
     // the y position for each circle
-    var ys = circles.map( function ( c ) { return itemsY[c.d[key]]; }
+    var ys = circles.map( c =>
+      itemsY[c.d[key]]
     )
 
     circlepack(circles, ys)
@@ -136,7 +137,7 @@ function show() {
 
 
 
-    var headings = items.map( function (p, i) {
+    var headings = items.map( (p, i) => {
       var h2 = document.createElement('h2')
       h2.id = p
       h2.textContent = p
@@ -161,9 +162,9 @@ function show() {
 
     }, 2500)
 
-    circles.forEach(function (c,i) {
+    circles.forEach((c,i) => {
       c.element.style.transform =
-        "translate(" + (c.x) + "px, " + ((ys[i])) + "px) scale(" + (c.r/6) + ")"
+        `translate(${c.x}px, ${(ys[i])}px) scale(${c.r/6})`
     })
   }
 
@@ -171,13 +172,16 @@ function show() {
 
 
 
-var group = function ( key ) { return data.reduce( function (memo, item) {
+var group = key =>
+  data.reduce( (memo, item) => {
     memo[item[key]] = (memo[item[key]]||0) + 1
     return memo
-  }, {}); }
+  }, {})
 
-var order = function ( obj ) { return Object.keys(obj).sort( function (a, b) { return obj[b] - obj[a]; }
-  ); }
+var order = obj =>
+  Object.keys(obj).sort( (a, b) =>
+    obj[b] - obj[a]
+  )
 
 
 
@@ -186,17 +190,17 @@ var order = function ( obj ) { return Object.keys(obj).sort( function (a, b) { r
 Promise.all([
 
   fetch('/emoji-slack-map.json')
-    .then(function ( r ) { return r.json(); })
-    .then(function ( _ ) { return emojiMap = _; }),
+    .then(r => r.json())
+    .then(_ => emojiMap = _),
 
   fetch('/emoji-do-map.json')
-    .then(function ( r ) { return r.json(); })
-    .then(function ( _ ) { return emojiMapDo = _; }),
+    .then(r => r.json())
+    .then(_ => emojiMapDo = _),
 
   fetch('/data')
   // fetch('/test-full.json')
-    .then(function ( r ) { return r.json(); })
-    .then(function ( _ ) { return data = _; })
+    .then(r => r.json())
+    .then(_ => data = _)
 
 ])
 .then(show)
@@ -220,4 +224,3 @@ document.addEventListener('click', function(e) {
   }
 
 }, false)
-
