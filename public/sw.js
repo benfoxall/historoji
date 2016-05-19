@@ -6,11 +6,13 @@ toolbox.precache([
   '/circlepack.js',
   '/show.js',
   '/',
-
+  '/?nope',
+  '/?by=channel',
+  '/?by=person',
   '/emoji-slack-map.json',
   '/emoji-do-map.json',
 
-  // '/data'
+  '/data'
 ])
 
 // imoji maps and images
