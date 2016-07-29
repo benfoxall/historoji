@@ -63,7 +63,7 @@ app.get('/data', (req, res, next) => {
     client.query(`
       SELECT * FROM "public"."emoji"
       order by time desc
-      limit 2000
+      limit 4000
       `,
       function(err, result) {
         if(err) return next(err)
