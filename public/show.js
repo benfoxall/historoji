@@ -76,7 +76,7 @@ function show() {
     c.element.style.transform =
       "translate(" + (c.x) + "px, " + ((_ys[i])) + "px) scale(0.08) rotate(" + (~~((Math.random()-.5)*360)) + "deg)"
 
-    c.element.style.transitionDelay = (i/circles.length) * 10 + 's'
+    c.element.style.transitionDelay = (i/circles.length) * 3 + 's'
   })
 
 
