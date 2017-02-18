@@ -76,6 +76,29 @@ app.get('/data', (req, res, next) => {
 
 })
 
+
+app.get('/all', (req, res, next) => {
+
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+
+    if(err) return next(err)
+
+    client.query(`
+      SELECT * FROM "public"."emoji"
+      order by time desc
+      `,
+      function(err, result) {
+        if(err) return next(err)
+        res.json(result.rows.map((r) => (
+          [r.id, + new Date(r.time), r.emoji, r.team, r.channel, r.user]
+        )))
+        done()
+      });
+  })
+
+})
+
+
 app.use(express.static('public'))
 
 app.listen(process.env.PORT || 3000)
